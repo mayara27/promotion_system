@@ -1,0 +1,43 @@
+<div class="ls-box-filter" id="select" >
+  <%= select_tag 'search_by', 
+  options_for_select(
+    {
+    'Customer login' => 'customer_login',
+    'Instance ID' => 'instance_id',
+    'Status' => 'status'
+  }, params[:search_by]), id:'oi', onChange: "update()" %>
+
+  <input type="text" 
+        name="search_query"
+        value="<%= params[:search_query]%>"
+        class="ls-dropdown"
+        id = "input">
+
+  <%= select_tag 'search', 
+    options_for_select(
+      {
+      'Running' => 'running',
+      'Error dns' => 'instance_id',
+      'Error mysql' => 'status'
+    }, params[:search]),id: "sel" %>
+    
+</div>
+
+<script>
+  function update() {
+   var select = document.getElementById('oi');
+	var value = select.options[select.selectedIndex].value;
+	console.log(value);
+  var div = document.querySelector("#input");
+  var div2 = document.querySelector("#sel");
+  div2.style.display = "none";
+  if((div.style.display === "none")) {
+        div.style.display = "block";
+    } else if (value =='status')  {
+      div.style.display = "none";
+      div2.style.display = "block";
+
+  }
+  }
+  update(); 
+</script>

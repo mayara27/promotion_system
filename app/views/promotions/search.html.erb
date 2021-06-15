@@ -1,0 +1,35 @@
+    <h1 class = ""> Cupons </h1>
+
+    <% if @coupons.empty? && @promotions.empty? %>
+      <br>
+      <br>
+      <h3>Nenhum cupom ou promoção foi encontrado.</h3>
+    <% else %>
+      <table class="ls-table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @coupons.each do |coupon|%>
+            <tr>
+              <td><%= coupon.title %></td>
+              <td></td>
+            </tr>
+          <% end %>
+            <% @promotions.each do |promotion|%>
+            <tr>
+              <td><%= promotion.name %></td>
+              <td><%= link_to 'Detalhar', promotion%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    <br>
+    <br>
+      <%= link_to "Voltar", promotions_path, class: 'ls-btn'%>
+  </div>
+</main>

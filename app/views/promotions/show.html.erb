@@ -1,0 +1,30 @@
+
+<%= render partial: 'table', locals: { promotion: @promotion } %>
+
+  <% if (@promotion.user != current_user) && (@promotion.not_approved?) %>
+    <%= link_to "Aprovar Promoção", approved_promotion_path(@promotion), method: :post, class: 'ls-btn'%>
+  <% elsif @promotion.approved? %>
+    <h5>Aprovada por: <%= @promotion.user_approved.email %>, <%= l(@promotion.approved_at) %></h5>
+  <% end %> 
+  <%if (@promotion.coupons.empty?) && (@promotion.approved?) %>
+    <%= link_to "Emitir cupons", generate_coupons_promotion_path(@promotion), method: :post, class: 'ls-btn'%>
+  <% else %>
+    <h1 class = ""> Cupons </h1>
+      <table class="ls-table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Ativar/Descartar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @promotion.coupons %>
+        </tbody>
+      </table>
+  <% end %>
+  <br>
+  <br>
+  <br>
+  <%= link_to "Voltar ", promotions_path, class: ' ml-3 ls-btn ls-ico-chevron-left'%>
+
+

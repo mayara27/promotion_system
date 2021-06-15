@@ -1,0 +1,19 @@
+    <%= link_to 'Registrar uma categoria', new_product_category_path, class: 'ls-btn-lg ls-btn-primary' %>
+   
+   <table class="ls-table">
+      <thead>
+      <tr>
+          <th>Nome</th>
+          <th>Detalhar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product_categories.each do |product_category|%>
+          <tr>
+            <td><%= link_to product_category.name, product_category%></td>
+            <td><%= link_to 'Detalhar', product_category%></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+

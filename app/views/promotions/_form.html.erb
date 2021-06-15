@@ -1,0 +1,53 @@
+<% if @promotion.errors.any? %>
+  <ul>
+  <% @promotion.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<div  class="ls-form">  
+<br>
+
+  <%= form_with model: @promotion, local: :true do |f| %>    
+    <fieldset>
+    <div class="ls-label col-md-8">
+      <%= f.label :name, 'Nome', class: "ls-label-text" %>
+      <%= f.text_field :name, class: "" %>
+    </div>
+
+    <div class="ls-label col-md-8">
+      <%= f.label :description, 'Descrição', class: "ls-label-tex" %>
+      <%= f.text_field :description, class: "" %>
+    </div>
+
+    <div class="ls-label col-md-8">
+      <%= f.label :code, 'Código', class: "ls-label-tex" %>
+      <%= f.text_field :code, class: "" %>
+    </div>
+
+    <div class="ls-label col-md-8">
+      <%= f.label :discount_rate, 'Desconto', class: "ls-label-tex" %>
+      <%= f.number_field :discount_rate, class: "" %>
+    </div>
+
+    <div class="ls-label col-md-8">
+      <%= f.label :coupon_quantity, 'Quantidade de cupons', class: "ls-label-tex" %>
+      <%= f.number_field :coupon_quantity, class: "" %>
+    </div>
+
+    <div class="ls-label col-md-8">
+      <%= f.label :expiration_date, 'Data de término', class: "ls-label-tex" %>
+      <%= f.date_field :expiration_date, class: "" %>
+    </div>
+
+    <div class="ls-label col-md-8">
+    <%= f.label :product_category_ids, 'Categorias' %>
+      <%= f.collection_check_boxes :product_category_ids, ProductCategory.all, :id, :name %>
+    </div>
+
+    <%= f.submit 'Salvar', class: "ls-btn" %>
+     </fieldset>
+  <% end %>
+  <br>
+</div>

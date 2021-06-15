@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      promotion:
+        one: 'Promoção'
+        other: 'Promoções'
+    attributes:
+      promotions:
+        name: 'Nome'
+      promotion/status:
+        approved: Aprovada
+        not_approved: Não Aprovada

@@ -1,0 +1,31 @@
+<table class="ls-table">
+      <thead>
+      <tr>
+          <th>Nome</th>
+          <th class="hidden-xs">Descrição</th>
+          <th>Codigo</th>
+          <th>Desconto</th>
+          <th class="hidden-xs">Término</th>
+          <th> Quantidade de Cupons</th>
+          <th>Status</th>
+          <th>Criado por</th>
+          <th>Apagar</th>
+          <th>Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><%=@promotion.name%></td>
+            <td class="hidden-xs"><%= @promotion.description%></td>
+            <td><%= @promotion.code%></td>
+            <td><%= number_to_percentage @promotion.discount_rate %></td>
+            <td  class="hidden-xs"><%= @promotion.expiration_date.strftime('%d/%m/%Y')%></td>
+            <td><%=@promotion.coupon_quantity%></td>
+            <td><%= Promotion.human_attribute_name("status.#{@promotion.status}")%></td>
+            <td><%=@promotion.user.email%></td>
+            <td><%=link_to 'Apagar', @promotion, method: :delete, data: { confirm: 'Tem certeza que deseja remover este item?'}%></td>
+            <td><%=link_to 'Editar', edit_promotion_path %></td>
+
+          </tr>
+      </tbody>
+    </table>

@@ -1,0 +1,37 @@
+    <%= form_tag search_promotions_path, :method=>'get', local: true do %>
+      <%= label_tag :q, "Buscar cupom ou promoção" %>
+      <%= text_field_tag :q, params[:q] %>
+      <%= submit_tag 'Buscar', name: nil, class: 'ls-btn-primary' %>
+    <% end %>
+
+    <br>
+    <br>
+
+    <%= link_to 'Registrar uma promoção', new_promotion_path, class: 'ls-btn-lg ls-btn-primary'%>
+    <br>
+    <table class="ls-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th class="hidden-xs">Descrição</th>
+          <th>Desconto</th>
+          <th>Detalhar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @promotions.each do |promotion|%>
+          <tr>
+            <td><%=link_to promotion.name, promotion%></td>
+            <td class="hidden-xs"><%= promotion.description%></td>
+            <td><%= number_to_percentage promotion.discount_rate %></td>
+            <td><%= link_to 'Detalhar', promotion%></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  
+    <% if @promotions.empty? %>
+      <p>Nenhuma promoção cadastrada</p>
+    <% end %>
+
+    <%= link_to"  Voltar", root_path, class: ' ml-3 ls-btn ls-ico-chevron-left'%>

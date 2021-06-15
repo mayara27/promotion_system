@@ -1,0 +1,12 @@
+<tr>
+  <td><%= coupon.title %></td>
+  <td> 
+    <% if coupon.active? %>
+      <%= link_to t('.inactivate'), inactivate_coupon_path(coupon), method: :post %>
+    <% else%>
+      <%= link_to t('.activate'), activate_coupon_path(coupon), method: :post %>
+    <% end %>
+
+  </td>
+</tr>
+        
